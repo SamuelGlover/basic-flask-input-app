@@ -11,15 +11,15 @@ def about():
 def portfolio():
     return render_template("portfolio.html")
 
-@app.route("/home")  # For index.html
-def home():
+@app.route("/")  # For index.html
+def index():
     return render_template("index.html")
 
 
 # Define a route for the root URL ("/")
 # The route handles both GET (displaying the form) and POST (handling form submissions) requests
 @app.route("/", methods=["GET", "POST"])
-def index():
+def home():
     # Initialize a variable to store the message to be displayed
     message = None
 
