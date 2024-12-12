@@ -1,0 +1,9 @@
+{
+    "name": "Python 3",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11", // Use a specific Python version
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "postCreateCommand": "pip install -r requirements.txt", // Install dependencies after container creation
+    "forwardPorts": [5000] // Forward the Flask app port
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f0e1;
+            margin: 0;
+            color: #554d47;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgba(215, 204, 200, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hamburger menu styles */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #554d47;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Navigation styles (common) */
+        nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(215, 204, 200, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out, display 0s 0.3s;
+        }
+
+        nav.active {
+            display: block;
+            max-height: 500px;
+            transition: max-height 0.3s ease-out, display 0s;
+        }
+
+        nav a {
+            color: #554d47;
+            text-decoration: none;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: #a1887f;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Desktop navigation styles */
+        @media (min-width: 769px) {
+            nav {
+                position: static;
+                background-color: transparent;
+                box-shadow: none;
+                flex-direction: row;
+                display: flex; /* Show on desktop */
+                max-height: none;
+                transition: none;
+            }
+
+            nav a {
+                margin: 0 15px;
+                padding: 8px 12px;
+                border-bottom: none;
+                transform: scale(1);
+            }
+
+            nav a:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #fff8e1;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: left; /* Align text to the left */
+            max-width: 600px;
+            width: 90%;
+            margin: 40px auto;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .container.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .container h1 { /* Style the H1 within the container */
+            text-align: center;
+            margin-bottom: 20px;
+            color: #554d47;
+        }
+
+        .container p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .container li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="logo">Flask Website Project!</span>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">about</a>
+            <a href="portfolio.html">Portfolio</a> 
+        </nav>
+        <div class="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    <div class="container active">
+        <h1>About This Website</h1>
+        <p>This website is a simple Flask web application. It demonstrates basic Flask functionality, including:</p>
+        <ul>
+            <li>Routing and view functions</li>
+            <li>Handling form submissions</li>
+            <li>Basic templating with Jinja2</li>
+        </ul>
+        <p>This project is built using:</p>
+        <ul>
+            <li>Python</li>
+            <li>Flask</li>
+            <li>HTML, CSS, and JavaScript</li>
+        </ul>
+    </div>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('nav');
+        const container = document.querySelector('.container');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        window.addEventListener('load', () => {
+            container.classList.add('active');
+        });
+    </script>
+</body>
+</html>
